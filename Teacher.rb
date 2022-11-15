@@ -1,18 +1,12 @@
-class Person
-    attr_reader :id
-    attr_accessor :name, :age
-    def initialize(age, name:"unknown",parent_permission: true)
-        @id = Random.rand(1..1000)
-        @name = name
-        @age = age
-        @parent_permission = parent_permission
-    end
+require "./Person.rb"
 
-    def of_age?
-        @age >= 18
+class Teacher < Person
+    def initialize(age, specialization, name, parent_permission)
+        super(age, name, parent_permission)
+        @specialization = specialization
     end
 
     def can_use_services?
-        of_age? || @parent_permission
+        true
     end
 end
