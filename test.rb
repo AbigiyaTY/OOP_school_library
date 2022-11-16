@@ -1,12 +1,12 @@
-require './person.rb'
-require './capitalizeDecorator'
-require './trimmerDecorator'
+require './person'
+require './capitalize_decorator'
+require './trimmer_decorator'
 
 person = Person.new(22, name: 'maximilianus')
-  person.correct_name
-  capitalizedPerson = CapitalizeDecorator.new(person)
-  capitalizedPerson.correct_name
-  capitalizedTrimmedPerson = TrimmerDecorator.new(capitalizedPerson)
-  capitalizedTrimmedPerson.correct_name
+person.correct_name
+capitalizedPerson = CapitalizeDecorator.new(person)
+capitalizedPerson.correct_name
+capitalizedTrimmedPerson = TrimmerDecorator.new(capitalizedPerson)
+capitalizedTrimmedPerson.correct_name
 
 # puts person.correct_name
