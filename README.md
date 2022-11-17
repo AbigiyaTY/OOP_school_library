@@ -6,7 +6,9 @@
 
 1. Implement classes and objects in Ruby.
 2. Implement encapsulation and inheritance with Ruby.
-3. Run a program using the command line.
+3. Implement composition (as an example of the design pattern).
+4. Set up associations between classes and objects.
+5. Run a program using the command line.
 
 
 ## Built With
