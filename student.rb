@@ -12,8 +12,7 @@ class Student < Person
     '¯\(ツ)/¯'
   end
 
-  def classroom(classroom)
-    @classroom = classroom
-    classroom.student << self
+  def classrooms(*)
+    @classroom.student << self
   end
 end
