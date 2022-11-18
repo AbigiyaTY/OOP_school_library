@@ -1,6 +1,30 @@
-![](https://img.shields.io/badge/Microverse-blueviolet)
+<a name="readme-top"></a>
 
-# OOP school library
+<div align="center">
+
+  <img src="murple_logo.png" alt="logo" width="140"  height="auto" />
+  <br/>
+
+  <h3><b>Microverse README Template</b></h3>
+
+</div>
+
+
+# 📗 Table of Contents
+
+- [📗 Table of Contents](#-table-of-contents)
+- [📖 [ OOP school library] <a name="about-project"></a>](#--oop-school-library-)
+  - [🛠 Built With <a name="built-with"></a>](#-built-with-)
+  - [💻 Getting Started <a name="getting-started"></a>](#-getting-started-)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+    - [Install](#install)
+    - [Usage](#usage)
+  - [🤝 Contributing <a name="contributing"></a>](#-contributing-)
+  - [⭐️ Show your support <a name="support"></a>](#️-show-your-support-)
+  - [📝 License <a name="license"></a>](#-license-)
+
+# 📖 [ OOP school library] <a name="about-project"></a>
 
 > Description the project.
 
@@ -8,22 +32,19 @@
 2. Implement encapsulation and inheritance with Ruby.
 3. Implement composition (as an example of the design pattern).
 4. Set up associations between classes and objects.
-5. Run a program using the command line.
+5. Build interactive console apps.
+6. Run a program using the command line.
 
-
-## Built With
+## 🛠 Built With <a name="built-with"></a>
 
 - Ruby
 
-## Getting Started
+## 💻 Getting Started <a name="getting-started"></a>
 
 **To get a local copy up and running, follow these steps.**
 1. Open terminal or cmd on you local machine and navigate to your desired directory.
 2. **Run**    *'git clone clone https://github.com/AbigiyaTY/OOP_school_library.git'*
 3. **Run**   *'code'*
-
-
-To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
@@ -33,6 +54,7 @@ In order to run this project you need **[describe prerequisites]**:
 ```sh
  gem install rails
 ```
+
 ### Setup
 
 Clone this repository to your desired folder:
@@ -41,6 +63,7 @@ Clone this repository to your desired folder:
   git clone https://github.com/AbigiyaTY/OOP_school_library.git
   cd OOP_school_library
 ```
+
 ### Install
 
 Install this project with **[package manager]**:
@@ -50,6 +73,7 @@ Install this project with **[package manager]**:
   gem install
 
 ```
+
 ### Usage
 
 To run the project, execute the following command:
@@ -57,35 +81,31 @@ To run the project, execute the following command:
 ```sh
   rails server
 ```
-### Run tests
 
-### Deployment
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-👤 **Abigiya Tadesse**
+👤 **Author**
 
 * GitHub: [@githubhandle](https://github.com/AbigiyaTY)
 * Twitter: [@twitterhandle](https://twitter.com/AbigiyaTY)
 * LinkedIn: [@LinkedIn](https://www.linkedin.com/in/AbigiyaTY)
 
-## 🤝 Contributing
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🤝 Contributing <a name="contributing"></a>
 
 Contributions, issues, and feature requests are welcome!
 
 Feel free to check the [issues page](../../issues/).
 
-## Show your support
 
-Give a ⭐️ if you like this project!
+## ⭐️ Show your support <a name="support"></a>
 
-## Acknowledgments
+If you like this project...
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 📝 License
+## 📝 License <a name="license"></a>
 
 This project is [MIT](./MIT.md) licensed.
 
