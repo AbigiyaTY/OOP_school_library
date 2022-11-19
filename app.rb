@@ -152,4 +152,3 @@ class App
     welcome
     main
   end
-end
