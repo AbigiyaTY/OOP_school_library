@@ -4,6 +4,7 @@ require './teacher'
 require './classroom'
 require './book'
 require './rental'
+require './data_store'
 
 class App
   attr_accessor :books, :people, :rentals
@@ -12,9 +13,11 @@ class App
     @book = []
     @people = []
     @rentals = []
+    @book_store = DataStore.new('book')
+    @book = @book_store.read.map { |book| Book.new(book['title'], book['author']) }
   end
 
-  def list
+  def list_options
         option = gets.chomp.to_s
         case option
         when '1'
@@ -30,7 +33,9 @@ class App
         when '6'
         list_rentals_for_person_id
         when '7'
+        puts 'File saved successfully!'
         puts 'Thank you for using this app!'
+        close
         exit 0
         end
     end
@@ -66,7 +71,8 @@ class App
       puts 'Invalid input'
     end
     puts 'Student created successfully'
-    list
+    welcome
+    list_options
   end
 
   def create_teacher
@@ -78,7 +84,8 @@ class App
     specialization = gets.chomp
     @people << Teacher.new(age, specialization, name, parent_permission: true)
     puts 'Teacher created successfully'
-    list
+    welcome 
+    list_options
   end
 
   def create_book
@@ -88,7 +95,8 @@ class App
     author = gets.chomp
     @book << Book.new(title, author)
     puts 'Book created successfully'
-    list
+    welcome
+    list_options
   end
 
   def create_rental
@@ -106,17 +114,20 @@ class App
     date = gets.chomp
     @rentals << Rental.new(date, @book[book_index.to_i], @people[person_index.to_i])
     puts 'Rental created successfully'
-    list
+    welcome
+    list_options
   end
 
   def list_books
     @book.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
-    list
+    welcome
+    list_options
   end
 
   def list_people
     @people.each { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
-    list
+    welcome
+    list_options
   end
 
   def list_rentals_for_person_id
@@ -130,6 +141,12 @@ class App
         puts 'No rentals found for that ID'
       end
     end
-    list
+    welcome
+    list_options
   end
+
+  def close
+    @book_store.write(@book.map(&:create_json))
+  end
+
 end

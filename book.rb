@@ -1,3 +1,4 @@
+
 class Book
   attr_accessor :title, :author, :rentals
 
@@ -10,5 +11,9 @@ class Book
   def rental(rental)
     @rentals = rental
     rental.book = self
+  end
+
+  def create_json
+    { title: @title, author: @author }
   end
 end
