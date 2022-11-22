@@ -9,4 +9,12 @@ class Rental
     @person = person
     person.rentals << self
   end
+
+  def create_json
+    {
+      data: data,
+      book: book.create_json,
+      person: person.create_json
+    }
+  end
 end

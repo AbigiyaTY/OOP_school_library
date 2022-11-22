@@ -15,6 +15,8 @@ class App
     @rentals = []
     @book_store = DataStore.new('book')
     @book = @book_store.read.map { |book| Book.new(book['title'], book['author']) }
+    @rentals_store = DataStore.new('rentals')
+    @rental = @rentals_store.read.map {|rental| Rental.new(rental['data'], rental['book'], rental['person']) }
   end
 
   def list_options
@@ -84,7 +86,7 @@ class App
     specialization = gets.chomp
     @people << Teacher.new(age, specialization, name, parent_permission: true)
     puts 'Teacher created successfully'
-    welcome 
+    welcome
     list_options
   end
 
@@ -147,6 +149,7 @@ class App
 
   def close
     @book_store.write(@book.map(&:create_json))
+    @rentals_store.write(@rental.map(&:create_json))
   end
 
 end
