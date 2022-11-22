@@ -15,8 +15,16 @@ class App
     @rentals = []
     @book_store = DataStore.new('book')
     @book = @book_store.read.map { |book| Book.new(book['title'], book['author']) }
+    @people_store = DataStore.new('people')
+    @people = @people_store.read.map do |person|
+      if person['type'] == 'Student'
+        Student.new(person['classroom'], person['age'], person['name'], parent_permission: person['parent_permission'])
+      else
+        Teacher.new(person['specialization'], person['age'], person['name'], parent_permission: person['parent_permission'])
+      end
+    end
     @rentals_store = DataStore.new('rentals')
-    @rental = @rentals_store.read.map {|rental| Rental.new(rental['data'], rental['book'], rental['person']) }
+    @rentals = @rentals_store.read.map {|rentals| Rental.new(rentals['data'], rentals['book'], rental['person']) }
   end
 
   def list_options
@@ -149,7 +157,8 @@ class App
 
   def close
     @book_store.write(@book.map(&:create_json))
-    @rentals_store.write(@rental.map(&:create_json))
+    @people_store.write(@people.map(&:create_json))
+    @rentals_store.write(@rentals.map(&:create_json))
   end
 
 end
