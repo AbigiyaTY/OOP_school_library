@@ -14,39 +14,26 @@ class App
     @rentals = []
   end
 
-  def welcome
-    puts 'Welcome to school library app!'
-
-    puts 'Please choose an option by entering a number:'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person id'
-    puts '7 - Exit'
-  end
-
-  def main
-    option = gets.chomp
-    case option
-    when '1'
-      list_books
-    when '2'
-      list_people
-    when '3'
-      create_person
-    when '4'
-      create_book
-    when '5'
-      create_rental
-    when '6'
-      list_rentals_for_person_id
-    when '7'
-      puts 'Thank you for using this app!'
-      exit 0
+  def list
+        option = gets.chomp.to_s
+        case option
+        when '1'
+        list_books
+        when '2'
+        list_people
+        when '3'
+        create_person
+        when '4'
+        create_book
+        when '5'
+        create_rental
+        when '6'
+        list_rentals_for_person_id
+        when '7'
+        puts 'Thank you for using this app!'
+        exit 0
+        end
     end
-  end
 
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
@@ -79,8 +66,7 @@ class App
       puts 'Invalid input'
     end
     puts 'Student created successfully'
-    welcome
-    main
+    list
   end
 
   def create_teacher
@@ -92,8 +78,7 @@ class App
     specialization = gets.chomp
     @people << Teacher.new(age, specialization, name, parent_permission: true)
     puts 'Teacher created successfully'
-    welcome
-    main
+    list
   end
 
   def create_book
@@ -103,8 +88,7 @@ class App
     author = gets.chomp
     @book << Book.new(title, author)
     puts 'Book created successfully'
-    welcome
-    main
+    list
   end
 
   def create_rental
@@ -122,20 +106,17 @@ class App
     date = gets.chomp
     @rentals << Rental.new(date, @book[book_index.to_i], @people[person_index.to_i])
     puts 'Rental created successfully'
-    welcome
-    main
+    list
   end
 
   def list_books
     @book.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
-    welcome
-    main
+    list
   end
 
   def list_people
     @people.each { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
-    welcome
-    main
+    list
   end
 
   def list_rentals_for_person_id
@@ -149,6 +130,6 @@ class App
         puts 'No rentals found for that ID'
       end
     end
-    welcome
-    main
+    list
   end
+end
