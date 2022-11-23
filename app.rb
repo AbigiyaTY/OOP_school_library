@@ -13,6 +13,7 @@ class App
     @book = []
     @people = []
     @rentals = []
+
     @book_store = DataStore.new('book')
     @book = @book_store.read.map { |book| Book.new(book['title'], book['author']) }
     @people_store = DataStore.new('people')
@@ -23,8 +24,8 @@ class App
         Teacher.new(person['specialization'], person['age'], person['name'], parent_permission: person['parent_permission'])
       end
     end
-    @rentals_store = DataStore.new('rentals')
-    @rentals = @rentals_store.read.map {|rentals| Rental.new(rentals['data'], rentals['book'], rental['person']) }
+    @rental_store= DataStore.new('rentals')
+    @rentals = @rental_store.read.map {|rentals| Rental.new(rentals['date'], rentals['book'], rentals['person']) }
   end
 
   def list_options
@@ -81,8 +82,6 @@ class App
       puts 'Invalid input'
     end
     puts 'Student created successfully'
-    welcome
-    list_options
   end
 
   def create_teacher
@@ -94,8 +93,6 @@ class App
     specialization = gets.chomp
     @people << Teacher.new(age, specialization, name, parent_permission: true)
     puts 'Teacher created successfully'
-    welcome
-    list_options
   end
 
   def create_book
@@ -105,8 +102,6 @@ class App
     author = gets.chomp
     @book << Book.new(title, author)
     puts 'Book created successfully'
-    welcome
-    list_options
   end
 
   def create_rental
@@ -124,20 +119,14 @@ class App
     date = gets.chomp
     @rentals << Rental.new(date, @book[book_index.to_i], @people[person_index.to_i])
     puts 'Rental created successfully'
-    welcome
-    list_options
   end
 
   def list_books
     @book.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
-    welcome
-    list_options
   end
 
   def list_people
     @people.each { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
-    welcome
-    list_options
   end
 
   def list_rentals_for_person_id
@@ -151,14 +140,20 @@ class App
         puts 'No rentals found for that ID'
       end
     end
-    welcome
-    list_options
   end
+
 
   def close
     @book_store.write(@book.map(&:create_json))
     @people_store.write(@people.map(&:create_json))
-    @rentals_store.write(@rentals.map(&:create_json))
+    @rental_store.write(@rentals.map(&:create_json))
+  end
+
+  def startLoop
+    loop do
+      welcome
+      list_options
+    end
   end
 
 end

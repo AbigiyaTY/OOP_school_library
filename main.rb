@@ -15,8 +15,7 @@ end
 
 def main
     app = App.new
-    welcome
-    app.list_options
+    app.startLoop
 end
 
 main

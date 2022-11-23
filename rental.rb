@@ -1,20 +1,20 @@
 class Rental
-  attr_accessor :data
-  attr_reader :book, :person
+  attr_accessor :data, :book, :person, :rentals
 
   def initialize(data, book, person)
     @data = data
     @book = book
-    book.rentals << self
     @person = person
+    @rentals = []
     person.rentals << self
+    book.rentals << self
   end
 
   def create_json
     {
-      data: data,
-      book: book.create_json,
-      person: person.create_json
+      data: @data,
+      title: @book.title,
+      id: @person.id
     }
   end
 end

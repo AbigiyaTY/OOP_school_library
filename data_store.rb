@@ -3,7 +3,7 @@ require 'json'
 class DataStore
     def initialize(file_name)
         @file_name = "#{file_name}.json"
-        write([]) unless File.exist?(@file_name)
+        write([]) unless File.file?(@file_name)
     end
 
     def write(data)

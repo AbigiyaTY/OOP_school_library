@@ -1,1 +1,1 @@
-[{"id":789,"name":"John","age":"4","parent_permission":true,"type":"Student","classroom":"6"},{"id":640,"name":"selam","age":"teaching","parent_permission":true,"type":"Teacher","specialization":"67"}]
+[{"id":975,"name":"Jhon","age":"Biology","parent_permission":true,"type":"Teacher","specialization":"28"},{"id":93,"name":"Abebe","age":"18","parent_permission":false,"type":"Student","classroom":"12"},{"id":587,"name":"Lusiy","age":"9","parent_permission":true,"type":"Student","classroom":"4"}]
