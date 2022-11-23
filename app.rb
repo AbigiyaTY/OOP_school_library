@@ -27,7 +27,7 @@ class App
     end
 
     @rental_store = DataStore.new('rentals')
-
+    # rubocop:disable all
     def result(para)
       if para['personObj']['type'] == 'Student'
         Student.new(para['personObj']['classroom'], para['persObj']['age'], para['persObj']['name'],
@@ -37,6 +37,7 @@ class App
                     parent_permission: para['personObj']['parent_permission'])
       end
     end
+    # rubocop:enable all
 
     @rentals = @rental_store.read.map do |rentals|
       Rental.new(rentals['data'], Book.new(rentals['bookObj']['title'], rentals['bookObj']['author']), result(rentals))
