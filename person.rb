@@ -28,8 +28,8 @@ class Person < Nameable
   end
 
   def rental(rental)
-      @rentals.push(rental)
-      rental.person = self
+    @rentals.push(rental)
+    rental.person = self
   end
 
   def create_json

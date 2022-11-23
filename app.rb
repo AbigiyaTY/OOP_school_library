@@ -21,35 +21,50 @@ class App
       if person['type'] == 'Student'
         Student.new(person['classroom'], person['age'], person['name'], parent_permission: person['parent_permission'])
       else
-        Teacher.new(person['specialization'], person['age'], person['name'], parent_permission: person['parent_permission'])
+        Teacher.new(person['specialization'], person['age'], person['name'],
+                    parent_permission: person['parent_permission'])
       end
     end
-    @rental_store= DataStore.new('rentals')
-    @rentals = @rental_store.read.map {|rentals| Rental.new(rentals['date'], rentals['book'], rentals['person']) }
+
+    @rental_store = DataStore.new('rentals')
+
+    def result(para)
+      if (para['personObj']['type'] == 'Student')
+        Student.new(para['personObj']['classroom'], para['persObj']['age'], para['persObj']['name'],
+                    parent_permission: para['persObj']['parent_permission'])
+      else
+        Teacher.new(para['personObj']['specialization'], para['personObj']['age'], para['personObj']['name'],
+                    parent_permission: para['personObj']['parent_permission'])
+      end
+    end
+
+    @rentals = @rental_store.read.map { |rentals|
+      Rental.new(rentals['data'], Book.new(rentals['bookObj']['title'], rentals['bookObj']['author']), result(rentals))
+    }
   end
 
   def list_options
-        option = gets.chomp.to_s
-        case option
-        when '1'
-        list_books
-        when '2'
-        list_people
-        when '3'
-        create_person
-        when '4'
-        create_book
-        when '5'
-        create_rental
-        when '6'
-        list_rentals_for_person_id
-        when '7'
-        puts 'File saved successfully!'
-        puts 'Thank you for using this app!'
-        close
-        exit 0
-        end
+    option = gets.chomp.to_s
+    case option
+    when '1'
+      list_books
+    when '2'
+      list_people
+    when '3'
+      create_person
+    when '4'
+      create_book
+    when '5'
+      create_rental
+    when '6'
+      list_rentals_for_person_id
+    when '7'
+      puts 'File saved successfully!'
+      puts 'Thank you for using this app!'
+      close
+      exit 0
     end
+  end
 
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
@@ -136,12 +151,9 @@ class App
     @rentals.each do |rental|
       if rental.person.id == id
         puts "Date: #{rental.data}, Book: #{rental.book.title} by #{rental.book.author}"
-      else
-        puts 'No rentals found for that ID'
       end
     end
   end
-
 
   def close
     @book_store.write(@book.map(&:create_json))
@@ -149,11 +161,10 @@ class App
     @rental_store.write(@rentals.map(&:create_json))
   end
 
-  def startLoop
+  def start_loop
     loop do
       welcome
       list_options
     end
   end
-
 end

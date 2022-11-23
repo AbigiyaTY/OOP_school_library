@@ -1,18 +1,18 @@
 require 'json'
 
 class DataStore
-    def initialize(file_name)
-        @file_name = "#{file_name}.json"
-        write([]) unless File.file?(@file_name)
-    end
+  def initialize(file_name)
+    @file_name = "#{file_name}.json"
+    write([]) unless File.file?(@file_name)
+  end
 
-    def write(data)
-        writeData = JSON.generate(data)
-        File.write(@file_name, writeData)
-    end
+  def write(data)
+    write_data = JSON.generate(data)
+    File.write(@file_name, write_data)
+  end
 
-    def read
-        readData = File.read(@file_name)
-        JSON.parse(readData)
-    end
+  def read
+    read_data = File.read(@file_name)
+    JSON.parse(read_data)
+  end
 end

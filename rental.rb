@@ -13,8 +13,9 @@ class Rental
   def create_json
     {
       data: @data,
-      title: @book.title,
-      id: @person.id
+      id: @person.id,
+      bookObj: { title: @book.title, author: @book.author },
+      personObj: { age: @person.age, name: @person.name }
     }
   end
 end
