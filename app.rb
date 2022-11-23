@@ -29,7 +29,7 @@ class App
     @rental_store = DataStore.new('rentals')
 
     def result(para)
-      if (para['personObj']['type'] == 'Student')
+      if para['personObj']['type'] == 'Student'
         Student.new(para['personObj']['classroom'], para['persObj']['age'], para['persObj']['name'],
                     parent_permission: para['persObj']['parent_permission'])
       else
@@ -38,9 +38,9 @@ class App
       end
     end
 
-    @rentals = @rental_store.read.map { |rentals|
+    @rentals = @rental_store.read.map do |rentals|
       Rental.new(rentals['data'], Book.new(rentals['bookObj']['title'], rentals['bookObj']['author']), result(rentals))
-    }
+    end
   end
 
   def list_options
@@ -149,9 +149,7 @@ class App
     id = gets.chomp.to_i
     puts 'Rentals: '
     @rentals.each do |rental|
-      if rental.person.id == id
-        puts "Date: #{rental.data}, Book: #{rental.book.title} by #{rental.book.author}"
-      end
+      puts "Date: #{rental.data}, Book: #{rental.book.title} by #{rental.book.author}" if rental.person.id == id
     end
   end
 
