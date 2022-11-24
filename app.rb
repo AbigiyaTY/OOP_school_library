@@ -4,6 +4,7 @@ require './teacher'
 require './classroom'
 require './book'
 require './rental'
+require './data_store'
 
 class App
   attr_accessor :books, :people, :rentals
@@ -12,23 +13,39 @@ class App
     @book = []
     @people = []
     @rentals = []
+
+    @book_store = DataStore.new('book')
+    @book = @book_store.read.map { |book| Book.new(book['title'], book['author']) }
+    @people_store = DataStore.new('people')
+    @people = @people_store.read.map do |person|
+      if person['type'] == 'Student'
+        Student.new(person['classroom'], person['age'], person['name'], parent_permission: person['parent_permission'])
+      else
+        Teacher.new(person['specialization'], person['age'], person['name'],
+                    parent_permission: person['parent_permission'])
+      end
+    end
+
+    @rental_store = DataStore.new('rentals')
+    # rubocop:disable all
+    def result(para)
+      if para['personObj']['type'] == 'Student'
+        Student.new(para['personObj']['classroom'], para['persObj']['age'], para['persObj']['name'],
+                    parent_permission: para['persObj']['parent_permission'])
+      else
+        Teacher.new(para['personObj']['specialization'], para['personObj']['age'], para['personObj']['name'],
+                    parent_permission: para['personObj']['parent_permission'])
+      end
+    end
+    # rubocop:enable all
+
+    @rentals = @rental_store.read.map do |rentals|
+      Rental.new(rentals['data'], Book.new(rentals['bookObj']['title'], rentals['bookObj']['author']), result(rentals))
+    end
   end
 
-  def welcome
-    puts 'Welcome to school library app!'
-
-    puts 'Please choose an option by entering a number:'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person id'
-    puts '7 - Exit'
-  end
-
-  def main
-    option = gets.chomp
+  def list_options
+    option = gets.chomp.to_s
     case option
     when '1'
       list_books
@@ -43,7 +60,9 @@ class App
     when '6'
       list_rentals_for_person_id
     when '7'
+      puts 'File saved successfully!'
       puts 'Thank you for using this app!'
+      close
       exit 0
     end
   end
@@ -79,8 +98,6 @@ class App
       puts 'Invalid input'
     end
     puts 'Student created successfully'
-    welcome
-    main
   end
 
   def create_teacher
@@ -92,8 +109,6 @@ class App
     specialization = gets.chomp
     @people << Teacher.new(age, specialization, name, parent_permission: true)
     puts 'Teacher created successfully'
-    welcome
-    main
   end
 
   def create_book
@@ -103,8 +118,6 @@ class App
     author = gets.chomp
     @book << Book.new(title, author)
     puts 'Book created successfully'
-    welcome
-    main
   end
 
   def create_rental
@@ -122,20 +135,14 @@ class App
     date = gets.chomp
     @rentals << Rental.new(date, @book[book_index.to_i], @people[person_index.to_i])
     puts 'Rental created successfully'
-    welcome
-    main
   end
 
   def list_books
     @book.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
-    welcome
-    main
   end
 
   def list_people
     @people.each { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
-    welcome
-    main
   end
 
   def list_rentals_for_person_id
@@ -143,13 +150,20 @@ class App
     id = gets.chomp.to_i
     puts 'Rentals: '
     @rentals.each do |rental|
-      if rental.person.id == id
-        puts "Date: #{rental.data}, Book: #{rental.book.title} by #{rental.book.author}"
-      else
-        puts 'No rentals found for that ID'
-      end
+      puts "Date: #{rental.data}, Book: #{rental.book.title} by #{rental.book.author}" if rental.person.id == id
     end
-    welcome
-    main
+  end
+
+  def close
+    @book_store.write(@book.map(&:create_json))
+    @people_store.write(@people.map(&:create_json))
+    @rental_store.write(@rentals.map(&:create_json))
+  end
+
+  def start_loop
+    loop do
+      welcome
+      list_options
+    end
   end
 end

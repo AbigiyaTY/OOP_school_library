@@ -13,16 +13,17 @@
 # 📗 Table of Contents
 
 - [📗 Table of Contents](#-table-of-contents)
-- [📖 [ OOP school library] <a name="about-project"></a>](#--oop-school-library-)
-  - [🛠 Built With <a name="built-with"></a>](#-built-with-)
-  - [💻 Getting Started <a name="getting-started"></a>](#-getting-started-)
+- [📖 \[ OOP school library\] ](#--oop-school-library-)
+  - [🛠 Built With ](#-built-with-)
+  - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
     - [Install](#install)
     - [Usage](#usage)
-  - [🤝 Contributing <a name="contributing"></a>](#-contributing-)
-  - [⭐️ Show your support <a name="support"></a>](#️-show-your-support-)
-  - [📝 License <a name="license"></a>](#-license-)
+  - [Authors](#authors)
+  - [🤝 Contributing ](#-contributing-)
+  - [⭐️ Show your support ](#️-show-your-support-)
+  - [📝 License ](#-license-)
 
 # 📖 [ OOP school library] <a name="about-project"></a>
 
@@ -33,7 +34,11 @@
 3. Implement composition (as an example of the design pattern).
 4. Set up associations between classes and objects.
 5. Build interactive console apps.
-6. Run a program using the command line.
+6. Describe the SOLID principles of OOP.
+7. Refactor your own Ruby code after gaining new knowledge.
+8. Apply Ruby best practices and language style guides in code.
+9. Store data in files.
+10. Run a program using the command line.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -84,7 +89,15 @@ To run the project, execute the following command:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-👤 **Author**
+## Authors
+
+👤 **Bantelom Geto**
+
+- GitHub: [Bantealem](https://github.com/Bantealem)
+- Twitter: [Bantealem](https://twitter.com/BantealemG)
+- LinkedIn: [Bantealem](https://www.linkedin.com/in/bantealem-geto-a301b9213/)
+
+👤 **Abigiya Tadesse**
 
 * GitHub: [@githubhandle](https://github.com/AbigiyaTY)
 * Twitter: [@twitterhandle](https://twitter.com/AbigiyaTY)

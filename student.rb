@@ -15,4 +15,8 @@ class Student < Person
   def classrooms(*)
     @classroom.student << self
   end
+
+  def create_json
+    super.merge({ type: self.class, classroom: @classroom })
+  end
 end

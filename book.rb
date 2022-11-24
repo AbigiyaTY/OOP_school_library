@@ -11,4 +11,8 @@ class Book
     @rentals = rental
     rental.book = self
   end
+
+  def create_json
+    { title: @title, author: @author }
+  end
 end
