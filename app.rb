@@ -16,6 +16,7 @@ class App
 
     @book_store = DataStore.new('book')
     @book = @book_store.read.map { |book| Book.new(book['title'], book['author']) }
+
     @people_store = DataStore.new('people')
     @people = @people_store.read.map do |person|
       if person['type'] == 'Student'
