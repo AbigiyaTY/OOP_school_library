@@ -84,15 +84,15 @@ To run the project, execute the following command:
 
 👤 **Bantelom Geto**
 
-- GitHub: [Bantealem](https://github.com/Bantealem)
-- Twitter: [Bantealem](https://twitter.com/BantealemG)
-- LinkedIn: [Bantealem](https://www.linkedin.com/in/bantealem-geto-a301b9213/)
+- GitHub: [@Bantealem](https://github.com/Bantealem)
+- Twitter: [@Bantealem](https://twitter.com/BantealemG)
+- LinkedIn: [@Bantealem](https://www.linkedin.com/in/bantealem-geto-a301b9213/)
 
 👤 **Abigiya Tadesse**
 
-* GitHub: [@githubhandle](https://github.com/AbigiyaTY)
-* Twitter: [@twitterhandle](https://twitter.com/AbigiyaTY)
-* LinkedIn: [@LinkedIn](https://www.linkedin.com/in/AbigiyaTY)
+* GitHub: [@AbigiyaTY](https://github.com/AbigiyaTY)
+* Twitter: [@AbigiyaTY](https://twitter.com/AbigiyaTY)
+* LinkedIn: [@AbigiyaTY](https://www.linkedin.com/in/Abigiyaty)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
